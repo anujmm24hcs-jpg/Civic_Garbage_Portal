@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Citizen Dashboard - CivicClean</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        /* =========================================
+           DASHBOARD
+        ========================================= */
+
+        .dashboard {
+
+            padding: 40px 6%;
+
+        }
+
+
+        .dashboard h1 {
+
+            text-align: center;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .dashboard-intro {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        /* =========================================
+           STATISTICS
+        ========================================= */
+
+        .dashboard-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 45px;
+
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        .stat-icon {
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .stat-card h2 {
+
+            font-size: 17px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .stat-number {
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================================
+           QUICK ACTIONS
+        ========================================= */
+
+        .section-title {
+
+            margin-top: 35px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .dashboard-cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .dashboard-card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.10);
+
+            text-align: center;
+
+        }
+
+
+        .dashboard-card h2 {
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .dashboard-card p {
+
+            margin-bottom: 20px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .dashboard-card button {
+
+            padding: 10px 20px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .dashboard-stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .dashboard-cards {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .dashboard {
+
+                padding: 25px 4%;
+
+            }
+
+
+            .dashboard-stats {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            CivicClean
+
+        </div>
+
+
+        <div class="nav-links">
+
+
+            <a href="/">
+                Home
+            </a>
+
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+
+            <a href="/report">
+                Report Issue
+            </a>
+
+
+            <a href="/complaints">
+                My Complaints
+            </a>
+
+
+            <a href="/map">
+                Garbage Map
+            </a>
+
+
+            <a href="/logout">
+                Logout
+            </a>
+
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================================
+         CITIZEN DASHBOARD
+    ========================================= -->
+
+    <section class="dashboard">
+
+
+        <h1>
+
+            Citizen Dashboard
+
+        </h1>
+
+
+        <p class="dashboard-welcome">
+    Welcome, <strong>{{ user.name }}</strong>! 👋
+    <br>
+    Help your community by reporting garbage dumping locations.
+</p>
+
+
+        <!-- =====================================
+             STATISTICS
+        ===================================== -->
+
+        <div class="dashboard-stats">
+
+
+            <!-- TOTAL COMPLAINTS -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon">
+
+                    📊
+
+                </div>
+
+
+                <h2>
+
+                    Total Complaints
+
+                </h2>
+
+
+                <div class="stat-number">
+
+                    {{ total }}
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- PENDING -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon">
+
+                    🟡
+
+                </div>
+
+
+                <h2>
+
+                    Pending
+
+                </h2>
+
+
+                <div class="stat-number">
+
+                    {{ pending }}
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- IN PROGRESS -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon">
+
+                    🔵
+
+                </div>
+
+
+                <h2>
+
+                    In Progress
+
+                </h2>
+
+
+                <div class="stat-number">
+
+                    {{ in_progress }}
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RESOLVED -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon">
+
+                    🟢
+
+                </div>
+
+
+                <h2>
+
+                    Resolved
+
+                </h2>
+
+
+                <div class="stat-number">
+
+                    {{ resolved }}
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             QUICK ACTIONS
+        ===================================== -->
+
+        <h2 class="section-title">
+
+            Quick Actions
+
+        </h2>
+
+
+
+        <div class="dashboard-cards">
+
+
+            <!-- =================================
+                 REPORT GARBAGE
+            ================================== -->
+
+            <div class="dashboard-card">
+
+
+                <h2>
+
+                    📸 Report Garbage
+
+                </h2>
+
+
+                <p>
+
+                    Report a new garbage dumping
+                    location with photo and GPS location.
+
+                </p>
+
+
+                <a href="/report">
+
+
+                    <button>
+
+                        Report Issue
+
+                    </button>
+
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 GARBAGE MAP
+            ================================== -->
+
+            <div class="dashboard-card">
+
+
+                <h2>
+
+                    📍 Garbage Map
+
+                </h2>
+
+
+                <p>
+
+                    View all garbage dumping locations
+                    reported by citizens.
+
+                </p>
+
+
+                <a href="/map">
+
+
+                    <button>
+
+                        View Map
+
+                    </button>
+
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 MY COMPLAINTS
+            ================================== -->
+
+            <div class="dashboard-card">
+
+
+                <h2>
+
+                    📋 My Complaints
+
+                </h2>
+
+
+                <p>
+
+                    Track the status of the complaints
+                    you have reported.
+
+                </p>
+
+
+                <a href="/complaints">
+
+
+                    <button>
+
+                        View Complaints
+
+                    </button>
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Update Complaint - CivicClean</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        .update-section {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .update-box {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        .update-box h1 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .update-box > p {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 25px;
+        }
+
+        .complaint-info {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .complaint-info p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .complaint-image {
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .current-after-image {
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .section-title {
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 17px;
+            color: #166534;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        select,
+        input[type="file"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 20px;
+            background: white;
+        }
+
+        .file-help {
+            margin-top: -12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .after-photo-box {
+            padding: 18px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .after-photo-box p {
+            margin-top: 0;
+            color: #166534;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .update-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #166534;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .update-button:hover {
+            background: #14532d;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .status-note {
+            padding: 12px 15px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            color: #1e40af;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CivicClean - Admin
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/admin">
+                Admin Dashboard
+            </a>
+
+            <a href="/map">
+                Garbage Map
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         UPDATE SECTION
+    ========================================= -->
+
+    <section class="update-section">
+
+        <div class="update-box">
+
+
+            <h1>
+                Update Complaint
+            </h1>
+
+            <p>
+                Review the complaint and update its status.
+            </p>
+
+
+
+            <!-- =====================================
+                 COMPLAINT INFORMATION
+            ====================================== -->
+
+            <div class="complaint-info">
+
+
+                {% if complaint.image %}
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='uploads/garbage/' + complaint.image
+                    ) }}"
+                    alt="Garbage Image"
+                    class="complaint-image"
+                >
+
+                {% endif %}
+
+
+                <p>
+                    <strong>Complaint ID:</strong>
+                    #{{ complaint.id }}
+                </p>
+
+
+                <p>
+                    <strong>Garbage Type:</strong>
+                    {{ complaint.garbage_type }}
+                </p>
+
+
+                <p>
+                    <strong>Description:</strong>
+                    {{ complaint.description }}
+                </p>
+
+
+                <p>
+                    <strong>Priority:</strong>
+                    {{ complaint.priority }}
+                </p>
+
+
+                <p>
+                    <strong>Latitude:</strong>
+                    {{ complaint.latitude }}
+                </p>
+
+
+                <p>
+                    <strong>Longitude:</strong>
+                    {{ complaint.longitude }}
+                </p>
+
+
+                <p>
+                    <strong>Current Status:</strong>
+                    {{ complaint.status }}
+                </p>
+
+
+                {% if complaint.after_image %}
+
+                <hr>
+
+                <p>
+                    <strong>Current Cleanup Photo:</strong>
+                </p>
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='uploads/garbage/' + complaint.after_image
+                    ) }}"
+                    alt="Cleanup Photo"
+                    class="current-after-image"
+                >
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- =====================================
+                 UPDATE FORM
+            ====================================== -->
+
+            <form
+                method="POST"
+                action="/admin/update/{{ complaint.id }}"
+                enctype="multipart/form-data"
+            >
+
+
+                <label for="status">
+
+                    Update Complaint Status
+
+                </label>
+
+
+                <select
+                    id="status"
+                    name="status"
+                    required
+                >
+
+                    <option
+                        value="Pending"
+                        {% if complaint.status == "Pending" %}
+                        selected
+                        {% endif %}
+                    >
+                        🟡 Pending
+                    </option>
+
+
+                    <option
+                        value="In Progress"
+                        {% if complaint.status == "In Progress" %}
+                        selected
+                        {% endif %}
+                    >
+                        🔵 In Progress
+                    </option>
+
+
+                    <option
+                        value="Resolved"
+                        {% if complaint.status == "Resolved" %}
+                        selected
+                        {% endif %}
+                    >
+                        🟢 Resolved
+                    </option>
+
+                </select>
+
+
+
+                <!-- =================================
+                     AFTER CLEANUP PHOTO
+                ================================== -->
+
+                <h3 class="section-title">
+                    🧹 Cleanup Verification
+                </h3>
+
+
+                <div class="after-photo-box">
+
+                    <p>
+
+                        When the garbage has been cleaned,
+                        upload a photo of the cleaned area.
+                        This photo will be visible to the citizen.
+
+                    </p>
+
+
+                    <label for="after_image">
+
+                        After Cleanup Photo
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="after_image"
+                        name="after_image"
+                        accept="image/*"
+                    >
+
+
+                    <div class="file-help">
+
+                        Recommended: JPG, JPEG or PNG image.
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="status-note">
+
+                    💡 If you select <strong>Resolved</strong>,
+                    make sure the cleanup photo has been uploaded.
+
+                </div>
+
+
+
+                <!-- =================================
+                     SUBMIT
+                ================================== -->
+
+                <button
+                    type="submit"
+                    class="update-button"
+                >
+
+                    ✅ Update Complaint
+
+                </button>
+
+
+            </form>
+
+
+
+            <a
+                href="/admin"
+                class="back-button"
+            >
+
+                ← Back to Admin Dashboard
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Garbage Map - CivicClean</title>
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- CivicClean CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        /* =========================================
+           MAP PAGE
+        ========================================= */
+
+        .map-page {
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 35px 20px;
+
+        }
+
+
+        .map-header {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .map-header h1 {
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .map-header p {
+
+            color: #6b7280;
+
+            margin: 0;
+
+        }
+
+
+        /* =========================================
+           MAP CONTAINER
+        ========================================= */
+
+        .map-wrapper {
+
+            background: white;
+
+            padding: 15px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.08);
+
+            border: 1px solid #e5e7eb;
+
+        }
+
+
+        #map {
+
+            width: 100%;
+
+            height: 600px;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+        }
+
+
+        /* =========================================
+           MAP LEGEND
+        ========================================= */
+
+        .map-legend {
+
+            background: white;
+
+            padding: 15px 18px;
+
+            border-radius: 10px;
+
+            margin-top: 15px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 3px 10px rgba(0, 0, 0, 0.06);
+
+        }
+
+
+        .map-legend h3 {
+
+            margin: 0 0 12px;
+
+            font-size: 16px;
+
+        }
+
+
+        .legend-items {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+        }
+
+
+        .legend-item {
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =========================================
+           POPUP
+        ========================================= */
+
+        .complaint-popup {
+
+            width: 270px;
+
+        }
+
+
+        .popup-title {
+
+            margin: 0 0 12px;
+
+            font-size: 18px;
+
+            color: #166534;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            padding-bottom: 8px;
+
+        }
+
+
+        .popup-row {
+
+            margin-bottom: 8px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .popup-label {
+
+            font-weight: 700;
+
+            color: #374151;
+
+        }
+
+
+        .popup-status {
+
+            display: inline-block;
+
+            padding: 4px 9px;
+
+            border-radius: 15px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        .popup-pending {
+
+            background: #fef3c7;
+
+            color: #92400e;
+
+        }
+
+
+        .popup-progress {
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+        }
+
+
+        .popup-resolved {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+
+        .popup-priority {
+
+            display: inline-block;
+
+            padding: 4px 9px;
+
+            border-radius: 15px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        .popup-high {
+
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+        }
+
+
+        .popup-medium {
+
+            background: #fef3c7;
+
+            color: #b45309;
+
+        }
+
+
+        .popup-low {
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+        }
+
+
+        /* =========================================
+           POPUP IMAGES
+        ========================================= */
+
+        .popup-image-title {
+
+            font-weight: 700;
+
+            font-size: 12px;
+
+            margin-top: 12px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .popup-image {
+
+            width: 100%;
+
+            height: 140px;
+
+            object-fit: cover;
+
+            border-radius: 8px;
+
+            border: 1px solid #e5e7eb;
+
+            display: block;
+
+        }
+
+
+        .popup-after-image {
+
+            margin-top: 8px;
+
+        }
+
+
+        /* =========================================
+           NO COMPLAINTS
+        ========================================= */
+
+        .no-map-data {
+
+            background: white;
+
+            padding: 45px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            border: 1px solid #e5e7eb;
+
+            color: #6b7280;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .map-page {
+
+                padding: 25px 12px;
+
+            }
+
+
+            #map {
+
+                height: 480px;
+
+            }
+
+
+            .legend-items {
+
+                flex-direction: column;
+
+                gap: 8px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CivicClean
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('report') }}">
+                Report Issue
+            </a>
+
+            <a href="{{ url_for('complaints') }}">
+                My Complaints
+            </a>
+
+            <a href="{{ url_for('garbage_map') }}">
+                Garbage Map
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         MAP PAGE
+    ========================================= -->
+
+    <section class="map-page">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="map-header">
+
+            <h1>
+                🗺️ Garbage Dumping Map
+            </h1>
+
+            <p>
+                View reported garbage locations and
+                track their current status.
+            </p>
+
+        </div>
+
+
+
+        {% if complaints %}
+
+
+        <!-- =====================================
+             MAP
+        ====================================== -->
+
+        <div class="map-wrapper">
+
+            <div id="map"></div>
+
+
+            <!-- MAP LEGEND -->
+
+            <div class="map-legend">
+
+                <h3>
+                    📍 Map Legend
+                </h3>
+
+
+                <div class="legend-items">
+
+                    <div class="legend-item">
+                        🔴 High Priority
+                    </div>
+
+                    <div class="legend-item">
+                        🟠 Medium Priority
+                    </div>
+
+                    <div class="legend-item">
+                        🟢 Low Priority
+                    </div>
+
+                    <div class="legend-item">
+                        🟢 Resolved
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- =====================================
+             NO DATA
+        ====================================== -->
+
+        <div class="no-map-data">
+
+            <h2>
+                📍 No Garbage Reports Found
+            </h2>
+
+            <p>
+                There are currently no garbage locations
+                available on the map.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         LEAFLET JS
+    ========================================= -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+
+    {% if complaints %}
+
+    <script>
+
+        // =========================================
+        // INITIALIZE MAP
+        // =========================================
+
+        var map = L.map("map").setView(
+            [19.0760, 72.8777],
+            10
+        );
+
+
+        // =========================================
+        // OPEN STREET MAP
+        // =========================================
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                attribution:
+                    "&copy; OpenStreetMap contributors"
+            }
+        ).addTo(map);
+
+
+        // =========================================
+        // GET COMPLAINTS FROM FLASK
+        // =========================================
+
+        var complaints = {{ complaints | tojson }};
+
+
+        // Store locations
+        var complaintLocations = [];
+
+
+        // =========================================
+        // ADD COMPLAINT MARKERS
+        // =========================================
+
+        complaints.forEach(function(complaint) {
+
+
+            if (
+                complaint.latitude !== null &&
+                complaint.longitude !== null
+            ) {
+
+
+                complaintLocations.push([
+                    complaint.latitude,
+                    complaint.longitude
+                ]);
+
+
+                // =================================
+                // MARKER COLOR
+                // =================================
+
+                var markerColor = "green";
+
+
+                if (complaint.priority === "High") {
+
+                    markerColor = "red";
+
+                }
+
+                else if (complaint.priority === "Medium") {
+
+                    markerColor = "orange";
+
+                }
+
+                else if (complaint.priority === "Low") {
+
+                    markerColor = "green";
+
+                }
+
+
+                // =================================
+                // RESOLVED COMPLAINT
+                // =================================
+
+                if (complaint.status === "Resolved") {
+
+                    markerColor = "green";
+
+                }
+
+
+                // =================================
+                // CREATE MARKER
+                // =================================
+
+                var marker = L.circleMarker(
+
+                    [
+                        complaint.latitude,
+                        complaint.longitude
+                    ],
+
+                    {
+
+                        radius: 10,
+
+                        color: markerColor,
+
+                        fillColor: markerColor,
+
+                        fillOpacity: 0.75,
+
+                        weight: 3
+
+                    }
+
+                ).addTo(map);
+
+
+
+                // =================================
+                // STATUS CLASS
+                // =================================
+
+                var statusClass = "popup-pending";
+
+
+                if (complaint.status === "In Progress") {
+
+                    statusClass = "popup-progress";
+
+                }
+
+                else if (complaint.status === "Resolved") {
+
+                    statusClass = "popup-resolved";
+
+                }
+
+
+
+                // =================================
+                // PRIORITY CLASS
+                // =================================
+
+                var priorityClass = "popup-medium";
+
+
+                if (complaint.priority === "High") {
+
+                    priorityClass = "popup-high";
+
+                }
+
+                else if (complaint.priority === "Low") {
+
+                    priorityClass = "popup-low";
+
+                }
+
+
+
+                // =================================
+                // POPUP CONTENT
+                // =================================
+
+                var popupContent =
+
+                    "<div class='complaint-popup'>" +
+
+                    "<h3 class='popup-title'>" +
+
+                    "🗑️ Garbage Report #" +
+
+                    complaint.id +
+
+                    "</h3>" +
+
+
+                    "<div class='popup-row'>" +
+
+                    "<span class='popup-label'>" +
+                    "Garbage Type:" +
+                    "</span><br>" +
+
+                    complaint.garbage_type +
+
+                    "</div>" +
+
+
+                    "<div class='popup-row'>" +
+
+                    "<span class='popup-label'>" +
+                    "Description:" +
+                    "</span><br>" +
+
+                    complaint.description +
+
+                    "</div>" +
+
+
+                    "<div class='popup-row'>" +
+
+                    "<span class='popup-label'>" +
+                    "Priority:" +
+                    "</span><br>" +
+
+                    "<span class='popup-priority " +
+                    priorityClass +
+                    "'>" +
+
+                    complaint.priority +
+
+                    "</span>" +
+
+                    "</div>" +
+
+
+                    "<div class='popup-row'>" +
+
+                    "<span class='popup-label'>" +
+                    "Status:" +
+                    "</span><br>" +
+
+                    "<span class='popup-status " +
+                    statusClass +
+                    "'>" +
+
+                    complaint.status +
+
+                    "</span>" +
+
+                    "</div>" +
+
+
+                    "<div class='popup-row'>" +
+
+                    "<span class='popup-label'>" +
+                    "Latitude:" +
+                    "</span> " +
+
+                    complaint.latitude +
+
+                    "<br>" +
+
+                    "<span class='popup-label'>" +
+                    "Longitude:" +
+                    "</span> " +
+
+                    complaint.longitude +
+
+                    "</div>";
+
+
+
+                // =================================
+                // BEFORE CLEANUP PHOTO
+                // =================================
+
+                if (complaint.image) {
+
+                    popupContent +=
+
+                        "<div class='popup-image-title'>" +
+
+                        "📷 Before Cleanup" +
+
+                        "</div>" +
+
+                        "<img src='/static/uploads/garbage/" +
+
+                        complaint.image +
+
+                        "' class='popup-image' " +
+
+                        "alt='Before Cleanup'>";
+
+                }
+
+
+
+                // =================================
+                // AFTER CLEANUP PHOTO
+                // =================================
+
+                if (complaint.after_image) {
+
+                    popupContent +=
+
+                        "<div class='popup-image-title'>" +
+
+                        "✨ After Cleanup" +
+
+                        "</div>" +
+
+                        "<img src='/static/uploads/garbage/" +
+
+                        complaint.after_image +
+
+                        "' class='popup-image popup-after-image' " +
+
+                        "alt='After Cleanup'>";
+
+                }
+
+
+
+                // Close popup
+                popupContent += "</div>";
+
+
+                // =================================
+                // ATTACH POPUP
+                // =================================
+
+                marker.bindPopup(
+                    popupContent
+                );
+
+            }
+
+        });
+
+
+
+        // =========================================
+        // AUTOMATIC MAP CENTERING
+        // =========================================
+
+        if (complaintLocations.length > 0) {
+
+            var bounds =
+                L.latLngBounds(complaintLocations);
+
+            map.fitBounds(
+                bounds,
+                {
+                    padding: [50, 50]
+                }
+            );
+
+        }
+
+    </script>
+
+    {% endif %}
+
+
+</body>
+
+</html>

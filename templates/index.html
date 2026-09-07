@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CivicClean - Smart Garbage Reporting Portal</title>
+
+    <!-- CivicClean CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        /* =========================================
+           HERO SECTION
+        ========================================= */
+
+        .hero {
+
+            min-height: 78vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 70px 6%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ecfdf5,
+                    #f0fdf4,
+                    #eff6ff
+                );
+
+        }
+
+
+        .hero-container {
+
+            width: 100%;
+
+            max-width: 1200px;
+
+            display: grid;
+
+            grid-template-columns: 1.2fr 0.8fr;
+
+            gap: 60px;
+
+            align-items: center;
+
+        }
+
+
+        .hero-content h1 {
+
+            font-size: 52px;
+
+            line-height: 1.15;
+
+            margin: 0 0 20px;
+
+            color: #166534;
+
+        }
+
+
+        .hero-content h1 span {
+
+            color: #2563eb;
+
+        }
+
+
+        .hero-content p {
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            color: #4b5563;
+
+            max-width: 650px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* =========================================
+           HERO BUTTONS
+        ========================================= */
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .hero-button {
+
+            display: inline-block;
+
+            padding: 14px 24px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .primary-button {
+
+            background: #166534;
+
+            color: white;
+
+        }
+
+
+        .primary-button:hover {
+
+            background: #14532d;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .secondary-button {
+
+            background: white;
+
+            color: #166534;
+
+            border: 1px solid #166534;
+
+        }
+
+
+        .secondary-button:hover {
+
+            background: #f0fdf4;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           HERO CARD
+        ========================================= */
+
+        .hero-card {
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.10);
+
+            text-align: center;
+
+            border: 1px solid #e5e7eb;
+
+        }
+
+
+        .hero-icon {
+
+            font-size: 75px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .hero-card h2 {
+
+            margin: 10px 0;
+
+            color: #166534;
+
+        }
+
+
+        .hero-card p {
+
+            color: #6b7280;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================================
+           FEATURES SECTION
+        ========================================= */
+
+        .features-section {
+
+            padding: 70px 6%;
+
+            background: white;
+
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+
+        }
+
+
+        .section-title h2 {
+
+            font-size: 34px;
+
+            margin-bottom: 10px;
+
+            color: #1f2937;
+
+        }
+
+
+        .section-title p {
+
+            color: #6b7280;
+
+            max-width: 650px;
+
+            margin: auto;
+
+            line-height: 1.6;
+
+        }
+
+
+        .features-grid {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 22px;
+
+        }
+
+
+        .feature-card {
+
+            padding: 28px 22px;
+
+            background: #f9fafb;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .feature-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .feature-icon {
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .feature-card h3 {
+
+            margin: 10px 0;
+
+            color: #1f2937;
+
+        }
+
+
+        .feature-card p {
+
+            color: #6b7280;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================================
+           HOW IT WORKS
+        ========================================= */
+
+        .how-section {
+
+            padding: 70px 6%;
+
+            background: #f9fafb;
+
+        }
+
+
+        .steps-grid {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .step {
+
+            background: white;
+
+            padding: 28px 20px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            border: 1px solid #e5e7eb;
+
+        }
+
+
+        .step-number {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            background: #166534;
+
+            color: white;
+
+            font-weight: bold;
+
+            font-size: 18px;
+
+        }
+
+
+        .step h3 {
+
+            margin: 10px 0;
+
+        }
+
+
+        .step p {
+
+            color: #6b7280;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================================
+           CTA SECTION
+        ========================================= */
+
+        .cta-section {
+
+            padding: 70px 6%;
+
+            background: #166534;
+
+            color: white;
+
+            text-align: center;
+
+        }
+
+
+        .cta-section h2 {
+
+            font-size: 34px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .cta-section p {
+
+            max-width: 650px;
+
+            margin: 0 auto 25px;
+
+            line-height: 1.6;
+
+            opacity: 0.9;
+
+        }
+
+
+        .cta-button {
+
+            display: inline-block;
+
+            background: white;
+
+            color: #166534;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        .cta-button:hover {
+
+            background: #f0fdf4;
+
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer {
+
+            background: #111827;
+
+            color: #d1d5db;
+
+            text-align: center;
+
+            padding: 25px 15px;
+
+        }
+
+
+        .footer p {
+
+            margin: 5px 0;
+
+            font-size: 14px;
+
+        }
+
+
+        .footer strong {
+
+            color: white;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 950px) {
+
+            .hero-container {
+
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+            }
+
+
+            .hero-content p {
+
+                margin-left: auto;
+
+                margin-right: auto;
+
+            }
+
+
+            .hero-buttons {
+
+                justify-content: center;
+
+            }
+
+
+            .features-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .steps-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .hero {
+
+                padding: 50px 5%;
+
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 38px;
+
+            }
+
+
+            .features-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .steps-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .hero-card {
+
+                padding: 25px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            CivicClean
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+
+            {% if session.get("user_id") %}
+
+                {% if session.get("role") == "admin" %}
+
+                <a href="{{ url_for('admin_dashboard') }}">
+                    Admin Dashboard
+                </a>
+
+                {% else %}
+
+                <a href="{{ url_for('dashboard') }}">
+                    Dashboard
+                </a>
+
+                <a href="{{ url_for('report') }}">
+                    Report Issue
+                </a>
+
+                <a href="{{ url_for('complaints') }}">
+                    My Complaints
+                </a>
+
+                {% endif %}
+
+                <a href="{{ url_for('garbage_map') }}">
+                    Garbage Map
+                </a>
+
+                <a href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+                <a href="{{ url_for('register') }}">
+                    Register
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         HERO
+    ========================================= -->
+
+    <section class="hero">
+
+
+        <div class="hero-container">
+
+
+            <div class="hero-content">
+
+
+                <h1>
+
+                    Keep Your Community
+
+                    <span>Clean & Green</span>
+
+                </h1>
+
+
+                <p>
+
+                    CivicClean is a smart civic complaint portal
+                    that helps citizens report garbage dumping,
+                    share its exact location and track the
+                    progress of cleanup activities.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+
+                    {% if session.get("user_id") %}
+
+                    <a
+                        href="{{ url_for('report') }}"
+                        class="hero-button primary-button"
+                    >
+                        📢 Report Garbage
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('garbage_map') }}"
+                        class="hero-button secondary-button"
+                    >
+                        🗺️ View Garbage Map
+                    </a>
+
+                    {% else %}
+
+                    <a
+                        href="{{ url_for('register') }}"
+                        class="hero-button primary-button"
+                    >
+                        🚀 Get Started
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('login') }}"
+                        class="hero-button secondary-button"
+                    >
+                        🔐 Login
+                    </a>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HERO CARD -->
+
+            <div class="hero-card">
+
+                <div class="hero-icon">
+                    ♻️
+                </div>
+
+
+                <h2>
+                    Cleaner Communities
+                </h2>
+
+
+                <p>
+
+                    Report → Locate → Resolve → Verify
+
+                </p>
+
+
+                <p>
+
+                    Making garbage management
+                    simpler, faster and more transparent.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FEATURES
+    ========================================= -->
+
+    <section class="features-section">
+
+
+        <div class="section-title">
+
+            <h2>
+                Why Use CivicClean?
+            </h2>
+
+            <p>
+
+                A simple digital platform connecting citizens
+                and administrators to improve local
+                garbage management.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="features-grid">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📷
+                </div>
+
+                <h3>
+                    Upload Evidence
+                </h3>
+
+                <p>
+
+                    Citizens can upload a photograph
+                    of the garbage dumping location.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📍
+                </div>
+
+                <h3>
+                    GPS Location
+                </h3>
+
+                <p>
+
+                    Capture the exact geographic location
+                    of the reported garbage.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🗺️
+                </div>
+
+                <h3>
+                    Interactive Map
+                </h3>
+
+                <p>
+
+                    View reported garbage locations
+                    on an interactive map.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Track Progress
+                </h3>
+
+                <p>
+
+                    Track complaints from Pending
+                    to In Progress and Resolved.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         HOW IT WORKS
+    ========================================= -->
+
+    <section class="how-section">
+
+
+        <div class="section-title">
+
+            <h2>
+                How CivicClean Works
+            </h2>
+
+            <p>
+
+                Four simple steps to report and resolve
+                garbage dumping issues.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="steps-grid">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>
+                    Report
+                </h3>
+
+                <p>
+
+                    Citizen uploads a garbage photo
+                    and provides details.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>
+                    Locate
+                </h3>
+
+                <p>
+
+                    GPS coordinates identify the
+                    exact dumping location.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>
+                    Resolve
+                </h3>
+
+                <p>
+
+                    Admin reviews the complaint and
+                    coordinates the cleanup.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <h3>
+                    Verify
+                </h3>
+
+                <p>
+
+                    Admin uploads the cleanup photo
+                    after the garbage is removed.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         CALL TO ACTION
+    ========================================= -->
+
+    <section class="cta-section">
+
+
+        <h2>
+            Together, Let's Keep Our City Clean
+        </h2>
+
+
+        <p>
+
+            Your one report can help improve
+            your neighbourhood and create a
+            cleaner environment for everyone.
+
+        </p>
+
+
+        {% if session.get("user_id") %}
+
+        <a
+            href="{{ url_for('report') }}"
+            class="cta-button"
+        >
+            📢 Report a Garbage Issue
+        </a>
+
+        {% else %}
+
+        <a
+            href="{{ url_for('register') }}"
+            class="cta-button"
+        >
+            🚀 Join CivicClean
+        </a>
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="footer">
+
+        <p>
+
+            <strong>
+                CivicClean
+            </strong>
+
+            — Smart Garbage Reporting Portal
+
+        </p>
+
+
+        <p>
+
+            A CEP Project for Cleaner and
+            Better Communities.
+
+        </p>
+
+
+        <p>
+
+            © 2026 CivicClean. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

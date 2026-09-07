@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - CivicClean</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        /* =========================================
+           LOGIN PAGE
+        ========================================= */
+
+        .login-section {
+
+            min-height: calc(100vh - 70px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 50px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ecfdf5,
+                    #eff6ff
+                );
+
+        }
+
+
+        .login-container {
+
+            width: 100%;
+
+            max-width: 440px;
+
+        }
+
+
+        /* =========================================
+           LOGIN CARD
+        ========================================= */
+
+        .login-box {
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.10);
+
+            border: 1px solid #e5e7eb;
+
+        }
+
+
+        .login-logo {
+
+            text-align: center;
+
+            font-size: 50px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .login-box h1 {
+
+            text-align: center;
+
+            margin: 0 0 8px;
+
+            color: #166534;
+
+            font-size: 30px;
+
+        }
+
+
+        .login-subtitle {
+
+            text-align: center;
+
+            color: #6b7280;
+
+            margin-bottom: 30px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .login-form label {
+
+            display: block;
+
+            font-weight: 600;
+
+            color: #374151;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .login-form input {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 13px 14px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .login-form input:focus {
+
+            border-color: #166534;
+
+            box-shadow:
+                0 0 0 3px rgba(22, 101, 52, 0.10);
+
+        }
+
+
+        /* =========================================
+           PASSWORD FIELD
+        ========================================= */
+
+        .password-wrapper {
+
+            position: relative;
+
+        }
+
+
+        .password-wrapper input {
+
+            padding-right: 50px;
+
+        }
+
+
+        .toggle-password {
+
+            position: absolute;
+
+            right: 12px;
+
+            top: 12px;
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            color: #6b7280;
+
+        }
+
+
+        .toggle-password:hover {
+
+            color: #166534;
+
+        }
+
+
+        /* =========================================
+           LOGIN BUTTON
+        ========================================= */
+
+        .login-button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #166534;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .login-button:hover {
+
+            background: #14532d;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* =========================================
+           REGISTER LINK
+        ========================================= */
+
+        .register-link {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+        }
+
+
+        .register-link a {
+
+            color: #166534;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+        }
+
+
+        .register-link a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =========================================
+           HOME LINK
+        ========================================= */
+
+        .home-link {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .home-link:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 500px) {
+
+            .login-section {
+
+                padding: 30px 15px;
+
+            }
+
+
+            .login-box {
+
+                padding: 28px 22px;
+
+            }
+
+
+            .login-box h1 {
+
+                font-size: 26px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            CivicClean
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('register') }}">
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         LOGIN SECTION
+    ========================================= -->
+
+    <section class="login-section">
+
+
+        <div class="login-container">
+
+
+            <div class="login-box">
+
+
+                <!-- LOGO -->
+
+                <div class="login-logo">
+                    ♻️
+                </div>
+
+
+                <h1>
+                    Welcome Back
+                </h1>
+
+
+                <p class="login-subtitle">
+
+                    Login to your CivicClean account
+                    to manage and track complaints.
+
+                </p>
+
+
+
+                <!-- LOGIN FORM -->
+
+                <form
+                    method="POST"
+                    action="{{ url_for('login') }}"
+                    class="login-form"
+                >
+
+
+                    <!-- EMAIL -->
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                        autocomplete="email"
+                    >
+
+
+
+                    <!-- PASSWORD -->
+
+                    <label for="password">
+                        Password
+                    </label>
+
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                            autocomplete="current-password"
+                        >
+
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            onclick="togglePassword()"
+                            aria-label="Show or hide password"
+                        >
+                            👁️
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+
+                        🔐 Login
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- REGISTER -->
+
+                <div class="register-link">
+
+                    Don't have an account?
+
+                    <a href="{{ url_for('register') }}">
+                        Create Account
+                    </a>
+
+                </div>
+
+
+
+                <!-- HOME -->
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="home-link"
+                >
+
+                    ← Back to CivicClean Home
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PASSWORD SCRIPT
+    ========================================= -->
+
+    <script>
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const button =
+                document.querySelector(".toggle-password");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.textContent = "🙈";
+
+            }
+
+            else {
+
+                password.type = "password";
+
+                button.textContent = "👁️";
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

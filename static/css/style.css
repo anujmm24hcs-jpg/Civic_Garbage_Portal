@@ -1,0 +1,1967 @@
+/* =========================================================
+   CIVICCLEAN - PROFESSIONAL STYLE SHEET
+   ========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7f6;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   2. COMMON BUTTON
+   ========================================================= */
+
+button {
+    border: none;
+    cursor: pointer;
+    background: #176b2c;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    background: #0f4f20;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   3. NAVBAR
+   ========================================================= */
+
+.navbar {
+    width: 100%;
+    min-height: 70px;
+    background: #14532d;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+
+    position: relative;
+    z-index: 1000;
+}
+
+.logo {
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    padding: 9px 13px;
+    border-radius: 7px;
+    font-size: 15px;
+    transition: all 0.25s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.13);
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   4. HOME / HERO
+   ========================================================= */
+
+.hero {
+    min-height: 560px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8f5e9 0%,
+            #f7fff8 55%,
+            #dff4e4 100%
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+    text-align: center;
+}
+
+.hero h1 {
+    margin: 0 0 20px;
+    font-size: 56px;
+    line-height: 1.15;
+    color: #14532d;
+    font-weight: 800;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: 0 auto 32px;
+
+    font-size: 19px;
+    color: #4b5563;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-buttons button {
+    min-width: 175px;
+    padding: 14px 25px;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   5. FEATURES
+   ========================================================= */
+
+.features {
+    padding: 75px 6%;
+    background: #ffffff;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 34px;
+    color: #14532d;
+    margin-bottom: 45px;
+}
+
+.feature-container {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.feature-card {
+    background: #ffffff;
+
+    padding: 32px 25px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+
+    transition: all 0.25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+.feature-card h3 {
+    color: #176b2c;
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   6. FOOTER
+   ========================================================= */
+
+.footer {
+    background: #14532d;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.footer h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.footer p {
+    color: #e5e7eb;
+    font-size: 14px;
+    margin: 7px auto;
+}
+
+.footer .copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #d1d5db;
+}
+
+
+/* =========================================================
+   7. LOGIN
+   ========================================================= */
+
+.login-container {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8f5e9,
+            #f5faf6
+        );
+}
+
+.login-box {
+    width: 420px;
+    max-width: 100%;
+
+    background: white;
+
+    padding: 42px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.10);
+
+    border: 1px solid #e5e7eb;
+}
+
+.login-box h1 {
+    margin: 0 0 10px;
+
+    text-align: center;
+
+    font-size: 32px;
+    color: #14532d;
+}
+
+.login-box > p {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+.login-box label {
+    display: block;
+
+    margin-top: 16px;
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.login-box input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: all 0.2s ease;
+}
+
+.login-box input:focus {
+    border-color: #176b2c;
+
+    box-shadow:
+        0 0 0 3px rgba(23, 107, 44, 0.10);
+}
+
+.login-box button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.register-link {
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #176b2c;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   8. CITIZEN DASHBOARD
+   ========================================================= */
+
+.dashboard {
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 65px 6%;
+
+    text-align: center;
+}
+
+.dashboard h1 {
+    color: #14532d;
+    font-size: 46px;
+    margin-bottom: 12px;
+}
+
+.dashboard > p,
+.dashboard-intro {
+    max-width: 700px;
+
+    margin: 0 auto 40px;
+
+    color: #6b7280;
+    font-size: 17px;
+}
+
+
+/* Dashboard statistics */
+
+.dashboard-stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 22px;
+
+    margin-bottom: 55px;
+}
+
+.stat-card {
+    background: white;
+
+    padding: 28px 20px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
+
+    transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+.stat-icon {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.stat-card h2 {
+    font-size: 20px;
+    color: #374151;
+    margin: 7px 0;
+}
+
+.stat-card h3 {
+    font-size: 17px;
+}
+
+.stat-card p,
+.stat-number {
+    font-size: 34px;
+    font-weight: 800;
+    color: #176b2c;
+    margin-top: 8px;
+}
+
+
+/* Dashboard section title */
+
+.section-title {
+    color: #14532d;
+    font-size: 30px;
+    margin: 35px 0 25px;
+}
+
+
+/* Quick action cards */
+
+.dashboard-cards {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.dashboard-card {
+    background: white;
+
+    padding: 30px 25px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
+
+    transition: all 0.25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+.dashboard-card h2 {
+    color: #176b2c;
+    margin-bottom: 14px;
+    font-size: 21px;
+}
+
+.dashboard-card p {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.dashboard-card a {
+    text-decoration: none;
+}
+
+
+/* Recent complaints */
+
+.recent-complaints {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    text-align: left;
+}
+
+.recent-complaint-card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 13px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.recent-complaint-card h3 {
+    color: #176b2c;
+    margin-bottom: 8px;
+}
+
+.recent-complaint-card p {
+    margin: 6px 0;
+    color: #4b5563;
+}
+
+.complaint-status {
+    text-align: center;
+    min-width: 130px;
+}
+
+.complaint-status strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.complaint-status span {
+    background: #fff3cd;
+    color: #856404;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    font-weight: 700;
+}
+
+
+/* View all */
+
+.view-all {
+    margin-top: 25px;
+}
+
+.view-all a {
+    color: #176b2c;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   9. REPORT GARBAGE
+   ========================================================= */
+
+.report-section {
+    min-height: 100vh;
+
+    padding: 55px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8f5e9,
+            #f7faf8
+        );
+}
+
+.report-box {
+    width: 650px;
+    max-width: 100%;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.09);
+
+    border: 1px solid #e5e7eb;
+}
+
+.report-box h1 {
+    margin: 0;
+
+    text-align: center;
+
+    color: #14532d;
+
+    font-size: 34px;
+}
+
+.report-box > p {
+    text-align: center;
+
+    color: #6b7280;
+
+    margin: 10px auto 28px;
+}
+
+.report-box label {
+    display: block;
+
+    margin-top: 18px;
+    margin-bottom: 7px;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    color: #374151;
+}
+
+.report-box input,
+.report-box select,
+.report-box textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: #ffffff;
+
+    transition: all 0.2s ease;
+}
+
+.report-box input:focus,
+.report-box select:focus,
+.report-box textarea:focus {
+    border-color: #176b2c;
+
+    box-shadow:
+        0 0 0 3px rgba(23, 107, 44, 0.10);
+}
+
+.report-box textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.location-box {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.location-button {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.submit-button {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 14px;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   10. MY COMPLAINTS
+   ========================================================= */
+
+.complaints-section {
+    min-height: 100vh;
+
+    padding: 55px 6%;
+
+    background: #f5f7f6;
+}
+
+.complaints-section h1 {
+    text-align: center;
+
+    color: #14532d;
+
+    font-size: 40px;
+
+    margin-bottom: 8px;
+}
+
+.complaints-intro {
+    text-align: center;
+
+    color: #6b7280;
+
+    margin: 0 auto 40px;
+}
+
+
+/* Complaint grid */
+
+.complaints-container {
+    max-width: 1150px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.complaint-card {
+    background: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
+
+    transition: all 0.25s ease;
+}
+
+.complaint-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+.complaint-image {
+    width: 100%;
+    height: 220px;
+
+    background: #eef2f0;
+
+    overflow: hidden;
+}
+
+.complaint-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.complaint-details {
+    padding: 24px;
+}
+
+.complaint-details h2 {
+    color: #176b2c;
+
+    margin-bottom: 15px;
+
+    font-size: 22px;
+}
+
+.complaint-details p {
+    margin: 10px 0;
+
+    color: #4b5563;
+
+    line-height: 1.6;
+}
+
+
+/* Location box */
+
+.location {
+    background: #f3f6f4;
+
+    padding: 12px 15px;
+
+    border-radius: 9px;
+
+    margin-top: 12px;
+
+    font-size: 14px;
+
+    color: #4b5563;
+}
+
+
+/* Priority badges */
+
+.priority {
+    display: inline-block;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.priority-high {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.priority-medium {
+    background: #ffedd5;
+    color: #c2410c;
+}
+
+.priority-low {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+/* Status badges */
+
+.status {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-progress {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-resolved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+/* No complaints */
+
+.no-complaints {
+    max-width: 650px;
+
+    margin: 50px auto;
+
+    padding: 45px;
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
+}
+
+.no-complaints h2 {
+    color: #176b2c;
+
+    margin-bottom: 10px;
+}
+
+.no-complaints p {
+    color: #6b7280;
+}
+
+.report-button {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    padding: 11px 20px;
+
+    background: #176b2c;
+
+    color: white;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+}
+
+.report-button:hover {
+    background: #0f4f20;
+}
+
+
+/* =========================================================
+   11. GARBAGE MAP
+   ========================================================= */
+
+.map-section {
+    min-height: 100vh;
+
+    padding: 45px 5%;
+
+    background: #f5f7f6;
+}
+
+.map-section h1 {
+    text-align: center;
+
+    color: #14532d;
+
+    font-size: 40px;
+
+    margin-bottom: 8px;
+}
+
+.map-section > p {
+    text-align: center;
+
+    color: #6b7280;
+
+    margin-bottom: 25px;
+}
+
+#map {
+    width: 100%;
+
+    height: 600px;
+
+    min-height: 500px;
+
+    display: block;
+
+    border-radius: 15px;
+
+    border: 1px solid #dfe5e1;
+
+    box-shadow:
+        0 7px 22px rgba(0, 0, 0, 0.10);
+}
+
+
+/* Map legend */
+
+.map-legend {
+    position: absolute;
+
+    right: 30px;
+    bottom: 30px;
+
+    background: white;
+
+    padding: 16px 18px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.15);
+
+    z-index: 1000;
+}
+
+.map-legend h3 {
+    margin: 0 0 10px;
+
+    color: #14532d;
+
+    font-size: 16px;
+}
+
+.map-legend p {
+    margin: 5px 0;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   12. ADMIN DASHBOARD
+   ========================================================= */
+
+.admin-dashboard {
+    min-height: 100vh;
+
+    padding: 50px 5%;
+
+    background: #f5f7f6;
+
+    text-align: center;
+}
+
+.admin-dashboard h1 {
+    font-size: 42px;
+
+    color: #14532d;
+
+    margin-bottom: 8px;
+}
+
+.admin-dashboard > p {
+    color: #6b7280;
+
+    font-size: 17px;
+
+    margin-bottom: 35px;
+}
+
+
+/* Admin statistics */
+
+.admin-stats {
+    max-width: 1100px;
+
+    margin: 0 auto 50px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 22px;
+}
+
+.admin-stats .stat-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
+
+    transition: all 0.25s ease;
+}
+
+.admin-stats .stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.admin-stats .stat-card h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.admin-stats .stat-card h3 {
+    font-size: 16px;
+    color: #4b5563;
+}
+
+.admin-stats .stat-card p {
+    font-size: 32px;
+
+    font-weight: 800;
+
+    color: #176b2c;
+
+    margin-top: 8px;
+}
+
+
+/* Admin complaints */
+
+.admin-complaints {
+    max-width: 1450px;
+
+    margin: auto;
+}
+
+.admin-complaints h2 {
+    font-size: 28px;
+
+    color: #14532d;
+
+    margin-bottom: 22px;
+}
+
+
+/* Table container */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    background: white;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
+}
+
+
+/* Table */
+
+.table-container table {
+    width: 100%;
+
+    min-width: 1100px;
+
+    border-collapse: collapse;
+}
+
+.table-container th {
+    background: #14532d;
+
+    color: white;
+
+    padding: 15px;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+.table-container td {
+    padding: 14px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    font-size: 14px;
+}
+
+.table-container tbody tr {
+    transition: background 0.2s ease;
+}
+
+.table-container tbody tr:hover {
+    background: #f5faf6;
+}
+
+
+/* Admin complaint image */
+
+.admin-complaint-image {
+    width: 120px;
+
+    height: 85px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    border: 1px solid #d1d5db;
+}
+
+
+/* Admin priorities */
+
+.admin-complaints .priority-high {
+    color: #b91c1c;
+
+    background: #fee2e2;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+}
+
+.admin-complaints .priority-medium {
+    color: #c2410c;
+
+    background: #ffedd5;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+}
+
+.admin-complaints .priority-low {
+    color: #166534;
+
+    background: #dcfce7;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+}
+
+
+/* Admin action button */
+
+.table-container button {
+    background: #176b2c;
+
+    color: white;
+
+    border: none;
+
+    padding: 9px 14px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.table-container button:hover {
+    background: #0f4f20;
+}
+
+
+/* =========================================================
+   13. RESPONSIVE DESIGN
+   ========================================================= */
+
+
+/* Tablets */
+
+@media (max-width: 1000px) {
+
+    .navbar {
+        padding: 15px 4%;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .feature-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-stats,
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .complaints-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+
+        padding: 7px 8px;
+    }
+
+
+    /* Home */
+
+    .hero {
+        min-height: 480px;
+
+        padding: 50px 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .hero-buttons button {
+        width: 100%;
+
+        max-width: 280px;
+    }
+
+
+    /* Features */
+
+    .features {
+        padding: 55px 20px;
+    }
+
+    .features h2 {
+        font-size: 28px;
+    }
+
+    .feature-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Login */
+
+    .login-container {
+        padding: 20px;
+    }
+
+    .login-box {
+        padding: 30px 22px;
+    }
+
+
+    /* Dashboard */
+
+    .dashboard {
+        padding: 45px 20px;
+    }
+
+    .dashboard h1 {
+        font-size: 35px;
+    }
+
+    .dashboard-stats,
+    .admin-stats,
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-card {
+        padding: 25px 20px;
+    }
+
+
+    /* Report */
+
+    .report-section {
+        padding: 35px 15px;
+    }
+
+    .report-box {
+        padding: 28px 20px;
+    }
+
+    .report-box h1 {
+        font-size: 29px;
+    }
+
+    .location-box {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Complaints */
+
+    .complaints-section {
+        padding: 40px 15px;
+    }
+
+    .complaints-section h1 {
+        font-size: 32px;
+    }
+
+    .complaint-image {
+        height: 200px;
+    }
+
+
+    /* Map */
+
+    .map-section {
+        padding: 35px 15px;
+    }
+
+    .map-section h1 {
+        font-size: 31px;
+    }
+
+    #map {
+        height: 500px;
+    }
+
+    .map-legend {
+        right: 15px;
+
+        bottom: 20px;
+
+        padding: 12px;
+    }
+
+
+    /* Admin */
+
+    .admin-dashboard {
+        padding: 35px 15px;
+    }
+
+    .admin-dashboard h1 {
+        font-size: 32px;
+    }
+
+
+    /* Recent complaints */
+
+    .recent-complaint-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .complaint-status {
+        text-align: left;
+    }
+
+}
+
+
+/* Very small screens */
+
+@media (max-width: 400px) {
+
+    .nav-links a {
+        font-size: 12px;
+
+        padding: 6px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .dashboard h1 {
+        font-size: 30px;
+    }
+
+    .login-box {
+        padding: 25px 18px;
+    }
+
+}
+
+.dashboard-welcome {
+    font-size: 18px;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.dashboard-welcome strong {
+    color: #166534;
+    font-weight: 700;
+}
+
+/* =========================================
+   MY COMPLAINTS PAGE
+========================================= */
+
+.complaints-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 25px;
+}
+
+.complaints-header {
+    margin-bottom: 35px;
+}
+
+.complaints-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.complaints-header p {
+    color: #64748b;
+    font-size: 17px;
+}
+
+
+/* =========================================
+   COMPLAINT CONTAINER
+========================================= */
+
+.complaints-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+
+/* =========================================
+   COMPLAINT CARD
+========================================= */
+
+.complaint-card {
+    display: flex;
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+    transition: 0.3s ease;
+}
+
+.complaint-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+
+/* =========================================
+   COMPLAINT IMAGE
+========================================= */
+
+.complaint-image {
+    width: 280px;
+    min-width: 280px;
+    background: #f1f5f9;
+}
+
+.complaint-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.no-image {
+    height: 100%;
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #64748b;
+    font-size: 40px;
+}
+
+.no-image span {
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+
+/* =========================================
+   COMPLAINT DETAILS
+========================================= */
+
+.complaint-details {
+    flex: 1;
+    padding: 28px;
+}
+
+.complaint-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.complaint-id {
+    display: inline-block;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.complaint-details h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #0f172a;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.complaint-status {
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-progress {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-resolved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.complaint-info {
+    margin-top: 22px;
+}
+
+.complaint-info h3 {
+    font-size: 14px;
+    margin-bottom: 7px;
+    color: #334155;
+}
+
+.complaint-info p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   META INFORMATION
+========================================= */
+
+.complaint-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+
+    margin-top: 22px;
+    padding-top: 20px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    color: #334155;
+    font-size: 14px;
+}
+
+.meta-label {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   PRIORITY
+========================================= */
+
+.priority-high {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.priority-medium {
+    color: #d97706;
+    font-weight: 700;
+}
+
+.priority-low {
+    color: #16a34a;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.complaint-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 20px;
+    padding: 12px 15px;
+
+    background: #f8fafc;
+    border-radius: 10px;
+
+    font-size: 14px;
+    color: #475569;
+}
+
+.complaint-location a {
+    margin-left: auto;
+
+    color: #166534;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.complaint-location a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   STATUS PROGRESS
+========================================= */
+
+.status-progress-container {
+    display: flex;
+    align-items: center;
+
+    margin-top: 28px;
+    padding-top: 20px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    min-width: 75px;
+
+    color: #94a3b8;
+}
+
+.progress-step span {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e2e8f0;
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.progress-step small {
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.progress-step.active {
+    color: #166534;
+}
+
+.progress-step.active span {
+    background: #166534;
+    color: #ffffff;
+}
+
+.progress-line {
+    flex: 1;
+    height: 3px;
+    background: #e2e8f0;
+    margin-bottom: 18px;
+}
+
+.active-line {
+    background: #166534;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.no-complaints {
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+
+    padding: 70px 25px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.empty-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.no-complaints h2 {
+    margin-bottom: 10px;
+    color: #0f172a;
+}
+
+.no-complaints p {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.no-complaints button {
+    border: none;
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    background: #166534;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.no-complaints button:hover {
+    background: #14532d;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 850px) {
+
+    .complaint-card {
+        flex-direction: column;
+    }
+
+    .complaint-image {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .complaint-image img {
+        height: 250px;
+        min-height: 250px;
+    }
+
+    .no-image {
+        min-height: 220px;
+    }
+
+    .complaint-meta {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .complaints-section {
+        padding: 30px 15px;
+    }
+
+    .complaints-header h1 {
+        font-size: 28px;
+    }
+
+    .complaint-details {
+        padding: 20px;
+    }
+
+    .complaint-top {
+        flex-direction: column;
+    }
+
+    .complaint-location {
+        flex-wrap: wrap;
+    }
+
+    .complaint-location a {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .progress-step {
+        min-width: 55px;
+    }
+
+    .progress-step small {
+        font-size: 9px;
+    }
+
+}

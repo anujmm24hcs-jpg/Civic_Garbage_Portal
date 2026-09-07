@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Garbage - CivicClean</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ============================= -->
+    <!-- NAVBAR -->
+    <!-- ============================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CivicClean
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/report" class="active">
+                Report Issue
+            </a>
+
+            <a href="/complaints">
+                My Complaints
+            </a>
+
+            <a href="/map">
+                Garbage Map
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ============================= -->
+    <!-- REPORT SECTION -->
+    <!-- ============================= -->
+
+    <section class="report-section">
+
+        <div class="report-box">
+
+            <div class="report-header">
+
+                <div class="report-icon">
+                    📸
+                </div>
+
+                <h1>
+                    Report Garbage
+                </h1>
+
+                <p>
+                    Help keep your community clean by reporting
+                    a garbage dumping spot.
+                </p>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- REPORT FORM -->
+            <!-- ============================= -->
+
+            <form
+                method="POST"
+                action="/report"
+                enctype="multipart/form-data"
+            >
+
+
+                <!-- Garbage Photo -->
+
+                <div class="form-group">
+
+                    <label for="image">
+                        Garbage Photo
+                    </label>
+
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                        required
+                    >
+
+                    <small>
+                        Upload a clear photo of the garbage dumping location.
+                    </small>
+
+                </div>
+
+
+                <!-- Garbage Type -->
+
+                <div class="form-group">
+
+                    <label for="garbage_type">
+                        Garbage Type
+                    </label>
+
+                    <select
+                        id="garbage_type"
+                        name="garbage_type"
+                        required
+                    >
+
+                        <option value="">
+                            Select Garbage Type
+                        </option>
+
+                        <option value="Household Waste">
+                            Household Waste
+                        </option>
+
+                        <option value="Plastic Waste">
+                            Plastic Waste
+                        </option>
+
+                        <option value="Construction Waste">
+                            Construction Waste
+                        </option>
+
+                        <option value="Organic Waste">
+                            Organic Waste
+                        </option>
+
+                        <option value="E-Waste">
+                            E-Waste
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Description -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        placeholder="Describe the garbage problem..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Priority -->
+
+                <div class="form-group">
+
+                    <label for="priority">
+                        Priority
+                    </label>
+
+                    <select
+                        id="priority"
+                        name="priority"
+                        required
+                    >
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium" selected>
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- GPS LOCATION -->
+
+                <div class="form-group">
+
+                    <label>
+                        📍 Location
+                    </label>
+
+                    <div class="location-box">
+
+                        <input
+                            type="text"
+                            id="latitude"
+                            name="latitude"
+                            placeholder="Latitude"
+                            readonly
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="longitude"
+                            name="longitude"
+                            placeholder="Longitude"
+                            readonly
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        onclick="getLocation()"
+                        class="location-button"
+                    >
+                        📍 Get My Location
+                    </button>
+
+                    <small>
+                        Your GPS location will be captured automatically.
+                    </small>
+
+                </div>
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+                    Submit Complaint
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- GPS JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script>
+
+        function getLocation() {
+
+            const locationButton =
+                document.querySelector(".location-button");
+
+
+            if (!navigator.geolocation) {
+
+                alert(
+                    "Geolocation is not supported by your browser."
+                );
+
+                return;
+            }
+
+
+            locationButton.innerText =
+                "📍 Getting Location...";
+
+            locationButton.disabled = true;
+
+
+            navigator.geolocation.getCurrentPosition(
+
+                function(position) {
+
+                    document.getElementById("latitude").value =
+                        position.coords.latitude.toFixed(6);
+
+                    document.getElementById("longitude").value =
+                        position.coords.longitude.toFixed(6);
+
+
+                    locationButton.innerText =
+                        "✅ Location Captured";
+
+                    locationButton.disabled = false;
+
+
+                    alert(
+                        "Location captured successfully!"
+                    );
+
+                },
+
+
+                function(error) {
+
+                    locationButton.innerText =
+                        "📍 Get My Location";
+
+                    locationButton.disabled = false;
+
+
+                    if (error.code === 1) {
+
+                        alert(
+                            "Location permission denied. Please allow location access."
+                        );
+
+                    }
+
+                    else if (error.code === 2) {
+
+                        alert(
+                            "Location unavailable. Please try again."
+                        );
+
+                    }
+
+                    else if (error.code === 3) {
+
+                        alert(
+                            "Location request timed out. Please try again."
+                        );
+
+                    }
+
+                    else {
+
+                        alert(
+                            "Unable to get your location."
+                        );
+
+                    }
+
+                },
+
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
